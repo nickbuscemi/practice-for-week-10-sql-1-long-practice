@@ -1,0 +1,16 @@
+Table Customers {
+  CustomerID INTEGER [pk, increment]
+  FirstName VARCHAR
+  LastName VARCHAR
+  phone VARCHAR [NULL] 
+  email VARCHAR [NULL]
+  points INTEGER [DEFAULT: 5] // initial points loaded when a customer joins the program
+}
+
+Table Transaction {
+  TransactionId INTEGER [pk, increment]
+  CustomerID INTEGER [ref: > Customers.CustomerID]
+  TransactionType VARCHAR // purchase or redemption
+  TransactionDate DATETIME
+  PointsChange INTEGER // +1 for a purchase, -10 for a redemption, +5 for the initial points loading
+}
